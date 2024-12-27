@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto";
+
+service ProductionRecordService {
+  rpc GetProductionRecordById(GetProductionRecordByIdRequest) returns (ProductionRecord);
+  rpc GetProductionRecords(GetProductionRecordsRequest) returns (GetProductionRecordsResponse);
+  rpc CreateProductionRecord(CreateProductionRecordRequest) returns (ProductionRecord);
+  rpc UpdateProductionRecord(UpdateProductionRecordRequest) returns (ProductionRecord);
+  rpc DeleteProductionRecord(DeleteProductionRecordRequest) returns (DeleteProductionRecordResponse);
+}
+
+enum ProductionRecordType {
+  PRODUCTION_RECORD_UNKNOWN = 0;
+  PRODUCTION_RECORD_MILK = 1;
+  PRODUCTION_RECORD_CHEESE = 2;
+  PRODUCTION_RECORD_YOGURT = 3;
+}
+
+message ProductionRecord {
+  string id = 1;
+  string farm_id = 2;
+  string animal_id = 3;
+  ProductionRecordType type = 4;
+  string quantity = 5;
+  string unit = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message GetProductionRecordByIdRequest {
+  string id = 1;
+}
+
+message GetProductionRecordsRequest {
+  string farm_id = 1;
+}
+
+message GetProductionRecordsResponse {
+  repeated ProductionRecord production_records = 1;
+}
+
+message CreateProductionRecordRequest {
+  string farm_id = 1;
+  string animal_id = 2;
+  ProductionRecordType type = 3;
+  string quantity = 4;
+  string unit = 5;
+}
+
+message UpdateProductionRecordRequest {
+  string id = 1;
+  string farm_id = 2;
+  string animal_id = 3;
+  ProductionRecordType type = 4;
+  string quantity = 5;
+  string unit = 6;
+}
+
+message DeleteProductionRecordRequest {
+  string id = 1;
+}
+
+message DeleteProductionRecordResponse {
+  string id = 1;
+}

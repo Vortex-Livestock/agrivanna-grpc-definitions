@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto";
+
+service AnimalService {
+  rpc GetAnimalById(GetAnimalByIdRequest) returns (Animal);
+  rpc GetAnimals(GetAnimalsRequest) returns (GetAnimalsResponse);
+  rpc CreateAnimal(CreateAnimalRequest) returns (Animal);
+  rpc UpdateAnimal(UpdateAnimalRequest) returns (Animal);
+  rpc DeleteAnimal(DeleteAnimalRequest) returns (DeleteAnimalResponse);
+}
+
+enum AnimalType {
+  ANIMAL_TYPE_UNKNOWN = 0;
+  ANIMAL_TYPE_COW = 1;
+}
+
+enum AnimalStatus {
+  ANIMAL_STATUS_UNKNOWN     = 0;
+  ANIMAL_STATUS_ACTIVE      = 1;
+  ANIMAL_STATUS_SOLD        = 2;
+  ANIMAL_STATUS_DECEASED    = 3;
+}
+
+message Animal {
+  string id         = 1;  
+  string farm_id    = 2;  
+  string ear_tag_id = 3;  
+  AnimalType type = 4;
+  string breed      = 5;
+  string birth_date = 6;  
+  AnimalStatus status = 7;
+  string created_at = 8;  
+  string updated_at = 9;
+}
+
+message GetAnimalByIdRequest {
+  string id = 1;
+}
+
+message GetAnimalsRequest {
+  string farm_id = 1;
+}
+
+message GetAnimalsResponse {
+  repeated Animal animals = 1;
+}
+
+message CreateAnimalRequest {
+  string farm_id    = 1;
+  string ear_tag_id = 2;
+  AnimalType type = 3;
+  string breed      = 4;
+  string birth_date = 5;
+  AnimalStatus status = 6;
+}
+
+message UpdateAnimalRequest {
+  string id         = 1;  
+  string farm_id    = 2;  
+  string ear_tag_id = 3;  
+  AnimalType type = 4;
+  string breed      = 5;
+  string birth_date = 6;  
+  AnimalStatus status = 7;
+}
+
+message DeleteAnimalRequest {
+  string id = 1;
+}
+
+message DeleteAnimalResponse {
+  string id = 1;
+}
