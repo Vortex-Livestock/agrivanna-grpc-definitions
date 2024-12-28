@@ -1,27 +1,25 @@
 name: Production Release Workflow
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       bump_type:
         type: choice
-        description: "Specify the type of version bump: major, minor, patch"
+        description: "Specify the type of version bump: major, minor, or patch"
         options:
           - major
           - minor
           - patch
         default: patch
-        required: false
 
 jobs:
-  setup:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          ref: devel # Work on the 'devel' branch
 
       - name: Install Protoc
         uses: arduino/setup-protoc@v3
@@ -32,41 +30,30 @@ jobs:
       - name: Install Go dependencies
         run: make install
 
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Generate Go stubs from proto files
         run: make proto
 
-  lint:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Lint the proto files
-        uses: bufbuild/buf-lint-action@v1
+        run: buf lint
 
-  tag:
-    needs: [build, lint]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-
-      - name: Extract Current Version
+      - name: Extract current version
         id: version
         run: |
-          current_version=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "current_version=$current_version" >> $GITHUB_ENV
 
-      - name: Calculate Next Version
+      - name: Calculate next version
         id: next_version
         run: |
-          bump_type="${{ github.event.inputs.bump_type || 'patch' }}"
+          bump_type="${{ github.event.inputs.bump_type }}"
           current_version="${{ env.current_version }}"
-          major=$(echo $current_version | cut -d. -f1 | sed 's/v//')
-          minor=$(echo $current_version | cut -d. -f2)
-          patch=$(echo $current_version | cut -d. -f3)
+
+          # Remove the leading 'v' to parse
+          raw_version="${current_version#v}"
+
+          major=$(echo "$raw_version" | cut -d. -f1)
+          minor=$(echo "$raw_version" | cut -d. -f2)
+          patch=$(echo "$raw_version" | cut -d. -f3)
 
           if [ "$bump_type" == "major" ]; then
             major=$((major + 1))
@@ -83,7 +70,7 @@ jobs:
           echo "next_version=$next_version" >> $GITHUB_ENV
           echo "Next version: $next_version"
 
-      - name: Create tag
+      - name: Create tag and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -95,10 +82,25 @@ jobs:
         with:
           tag_name: ${{ env.next_version }}
           release_name: Release ${{ env.next_version }}
-          body: |
-            Changes in this release:
-            - Auto-generated release notes
+          body: "Auto-generated release for ${{ env.next_version }}"
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          head: devel
+          title: "Bump version to ${{ env.next_version }}"
+
+      - name: Merge the release PR
+        if: steps.cpr.outputs.pull-request-number != ''
+        uses: peter-evans/merge-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
