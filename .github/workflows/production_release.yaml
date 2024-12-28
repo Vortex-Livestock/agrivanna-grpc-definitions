@@ -72,15 +72,7 @@ jobs:
           git push origin $release_branch
           echo "release_branch=$release_branch" >> $GITHUB_ENV
 
-      # Step 5: Generate proto stubs
-      - name: Generate proto stubs
-        run: |
-          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-          export PATH="$PATH:$(go env GOPATH)/bin"
-          make proto
-
-      # Step 6: Bump version in README.md
+      # Step 5: Bump version in README.md
       - name: Bump version in README.md
         run: |
           sed -i "s/\- \[v[0-9]*\.[0-9]*\.[0-9]*\](https:\/\/github.com\/Vortex-Livestock\/agrivanna-grpc-definitions\/releases\/tag\/v[0-9]*\.[0-9]*\.[0-9]*)/\- \[${{ env.next_version }}](https:\/\/github.com\/Vortex-Livestock\/agrivanna-grpc-definitions\/releases\/tag\/${{ env.next_version }})/g" README.md
@@ -90,7 +82,7 @@ jobs:
           git commit -m "Update README.md with version ${{ env.next_version }}" || echo "No changes to commit"
           git push origin ${{ env.release_branch }}
 
-      # Step 7: Sync release branch with main and devel
+      # Step 6: Sync release branch with main and devel
       - name: Sync release branch with main and devel
         run: |
           git checkout ${{ env.release_branch }}
@@ -98,7 +90,7 @@ jobs:
           git pull origin devel || echo "No changes from devel"
           git push origin ${{ env.release_branch }}
 
-      # Step 8: Create PR to merge release into main
+      # Step 7: Create PR to merge release into main
       - name: Create PR to merge release into main
         id: pr_main
         run: |
@@ -111,7 +103,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      # Step 9: Create PR to merge release into devel
+      # Step 8: Create PR to merge release into devel
       - name: Create PR to merge release into devel
         id: pr_devel
         run: |
@@ -124,7 +116,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      # Step 10: Merge PR into main
+      # Step 9: Merge PR into main
       - name: Merge PR into main
         run: |
           pr_number=$(gh pr list --state open --base main --head ${{ env.release_branch }} --json number --jq ".[0].number")
@@ -132,7 +124,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      # Step 11: Merge PR into devel
+      # Step 10: Merge PR into devel
       - name: Merge PR into devel
         run: |
           pr_number=$(gh pr list --state open --base devel --head ${{ env.release_branch }} --json number --jq ".[0].number")
@@ -140,7 +132,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      # Step 12: Tag the release
+      # Step 11: Tag the release
       - name: Tag the release
         run: |
           git checkout main
@@ -148,7 +140,7 @@ jobs:
           git tag ${{ env.next_version }}
           git push origin ${{ env.next_version }}
 
-      # Step 13: Create GitHub Release
+      # Step 12: Create GitHub Release
       - name: Create GitHub Release
         run: |
           gh release create ${{ env.next_version }} \
