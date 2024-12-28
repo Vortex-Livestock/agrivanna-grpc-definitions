@@ -37,6 +37,9 @@ jobs:
       - name: Lint the proto files
         run: buf lint
 
+      - name: Fetch all branches
+        run: git fetch --all
+
       - name: Extract current version
         id: version
         run: |
