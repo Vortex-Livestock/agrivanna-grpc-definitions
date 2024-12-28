@@ -72,35 +72,31 @@ jobs:
 
       - name: Create tag and push
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
           git tag ${{ env.next_version }}
           git push origin ${{ env.next_version }}
 
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        with:
-          tag_name: ${{ env.next_version }}
-          release_name: Release ${{ env.next_version }}
-          body: "Auto-generated release for ${{ env.next_version }}"
-          draft: false
-          prerelease: false
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh-cli@v2
+
+      - name: Create PR from devel to main
+        id: create_pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "${{ env.GITHUB_TOKEN }}" | gh auth login --with-token
+          pr_number=$(gh pr create \
+            --base main \
+            --head devel \
+            --title "Automated Release PR for ${{ env.next_version }}" \
+            --body "Releasing ${{ env.next_version }} from devel to main" \
+            --json number --jq '.number'
+          )
+          echo "pr_number=$pr_number" >> $GITHUB_OUTPUT
 
-      - name: Create release PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          head: devel
-          title: "Bump version to ${{ env.next_version }}"
-
-      - name: Merge the release PR
-        if: steps.cpr.outputs.pull-request-number != ''
-        uses: peter-evans/merge-pull-request@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+      - name: Merge PR
+        if: steps.create_pr.outputs.pr_number != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "${{ env.GITHUB_TOKEN }}" | gh auth login --with-token
+          gh pr merge ${{ steps.create_pr.outputs.pr_number }} --merge --admin
