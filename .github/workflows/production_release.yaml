@@ -41,7 +41,8 @@ jobs:
         id: version
         run: |
           git fetch --tags
-          current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          current_version=$(git describe --tags --abbrev=0 --tags 2>/dev/null || git tag | tail -n 1 || echo "v0.0.0")
+          echo "current_version=$current_version"
           echo "current_version=$current_version" >> $GITHUB_ENV
 
       - name: Calculate next version
