@@ -20,6 +20,7 @@ install:
 .PHONY: proto
 proto:
 	@echo "Generating protobuf stubs from '$(PROTO_SRC_DIR)' into '$(PROTO_OUT_DIR)'..."
+	mkdir -p internal/pb
 	protoc \
 		-I $(PROTO_SRC_DIR) \
 		--go_out=$(PROTO_OUT_DIR) \
