@@ -15,9 +15,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -103,7 +100,7 @@ jobs:
             --body "Merging changes for version ${{ env.next_version }} into main" \
             -f
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Merge PR to main
         run: |
@@ -112,7 +109,7 @@ jobs:
             --squash \
             --admin
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Create tag and push
         run: |
@@ -123,7 +120,7 @@ jobs:
 
       - name: Create GitHub Release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh release create ${{ env.next_version }} \
             -t "Release ${{ env.next_version }}" \
