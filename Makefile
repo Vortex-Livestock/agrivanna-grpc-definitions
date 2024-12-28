@@ -29,3 +29,13 @@ proto:
 		$(PROTO_SRC_DIR)/*.proto
 
 	@echo "Protobuf generation completed."
+
+# ------------------------------------------------------------------------------
+# Clean up
+# ------------------------------------------------------------------------------
+.PHONY: clean
+clean:
+	@echo "Cleaning up..."
+	rm -rf $(PROTO_OUT_DIR)/*.pb.go
+
+	@echo "Clean up completed."

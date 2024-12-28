@@ -60,3 +60,11 @@ $ make install
 ```bash
 $ make proto
 ```
+
+## Other Commands
+
+- To clean the generated code
+
+```bash
+$ make clean
+```
