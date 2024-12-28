@@ -17,9 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+
+      - name: Fetch all branches
+        run: git fetch --all
 
       - name: Install Buf CLI
         uses: bufbuild/buf-setup-action@v1
@@ -38,7 +42,6 @@ jobs:
         run: |
           bump_type="${{ github.event.inputs.bump_type }}"
           current_version="${{ env.current_version }}"
-
           raw_version="${current_version#v}"
 
           major=$(echo "$raw_version" | cut -d. -f1)
@@ -60,41 +63,81 @@ jobs:
           echo "next_version=$next_version" >> $GITHUB_ENV
           echo "Next version: $next_version"
 
-      - name: Fetch all branches
-        run: git fetch --all
+      - name: Create release branch
+        id: create_release_branch
+        run: |
+          git checkout devel
+          git pull origin devel
+          release_branch="release/v${{ env.next_version }}"
+          git checkout -b $release_branch
+          git push origin $release_branch
+          echo "release_branch=$release_branch" >> $GITHUB_ENV
 
-      - name: Create tag and push
+      - name: Commit changes to release branch
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git tag ${{ env.next_version }}
-          git push origin ${{ env.next_version }}
+          git add .
+          git commit -m "Prepare release ${{ env.next_version }}" || echo "No changes to commit"
+          git push origin ${{ env.release_branch }}
 
-      - name: Create PR from devel to main
+      - name: Sync release branch with main and devel
+        run: |
+          git checkout ${{ env.release_branch }}
+          git merge origin/main || echo "No conflicts with main"
+          git merge origin/devel || echo "No conflicts with devel"
+          git push origin ${{ env.release_branch }}
+
+      - name: Create PR to merge release into main
+        id: pr_main
         run: |
           gh pr create \
             --base main \
-            --head devel \
-            --title "Bumped version ${{ env.next_version }}" \
-            --body "Merging changes for version ${{ env.next_version }} into main" \
+            --head ${{ env.release_branch }} \
+            --title "Release ${{ env.next_version }}" \
+            --body "Merging release ${{ env.next_version }} into main" \
             -f
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      - name: Merge PR to main
+      - name: Create PR to merge release into devel
+        id: pr_devel
         run: |
-          gh pr merge \
-            $(gh pr list --state open --base main --head devel --json number --jq ".[0].number") \
-            --squash \
-            --admin
+          gh pr create \
+            --base devel \
+            --head ${{ env.release_branch }} \
+            --title "Backport release ${{ env.next_version }}" \
+            --body "Merging release ${{ env.next_version }} into devel to keep it up to date" \
+            -f
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
-      - name: Create GitHub Release
+      - name: Merge PR into main
+        run: |
+          pr_number=$(gh pr list --state open --base main --head ${{ env.release_branch }} --json number --jq ".[0].number")
+          gh pr merge $pr_number --squash --admin
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+
+      - name: Merge PR into devel
+        run: |
+          pr_number=$(gh pr list --state open --base devel --head ${{ env.release_branch }} --json number --jq ".[0].number")
+          gh pr merge $pr_number --squash --admin
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
+      - name: Tag the release
+        run: |
+          git checkout main
+          git pull origin main
+          git tag ${{ env.next_version }}
+          git push origin ${{ env.next_version }}
+
+      - name: Create GitHub Release
         run: |
           gh release create ${{ env.next_version }} \
             -t "Release ${{ env.next_version }}" \
             --notes-from-tag \
             --target main
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
