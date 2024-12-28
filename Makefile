@@ -27,7 +27,7 @@ proto:
 		--go_opt=paths=source_relative \
 		--go-grpc_out=$(PROTO_OUT_DIR) \
 		--go-grpc_opt=paths=source_relative \
-		$(PROTO_SRC_DIR)/*.proto
+		$(PROTO_SRC_DIR)/v1/*.proto
 
 	@echo "Protobuf generation completed."
 
