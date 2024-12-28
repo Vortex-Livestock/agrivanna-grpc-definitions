@@ -67,7 +67,7 @@ $ make clean
 
 ## Release
 
-- [v0.0.1](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/releases/tag/v0.0.1)
+- [v0.0.2](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/releases/tag/v0.0.2)
 
 ## Contributors
 
