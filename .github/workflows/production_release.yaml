@@ -25,8 +25,14 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v3
+
       - name: Install Buf CLI
         uses: bufbuild/buf-setup-action@v1
+
+      - name: Install Go dependencies
+        run: make install
 
       - name: Lint the proto files
         run: buf lint
@@ -73,9 +79,15 @@ jobs:
           git push origin $release_branch
           echo "release_branch=$release_branch" >> $GITHUB_ENV
 
+      - name: Generate proto stubs
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+          export PATH="$PATH:$(go env GOPATH)/bin"
+          make proto
+
       - name: Commit changes to release branch
         run: |
-          make install
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add .
