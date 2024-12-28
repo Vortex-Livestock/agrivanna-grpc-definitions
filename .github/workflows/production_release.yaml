@@ -88,9 +88,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr create \
-            -B main \
-            -H devel \
-            -t "Bumped version ${{ env.next_version }}" \
+            --base main \
+            --head devel \
+            --title "Bumped version ${{ env.next_version }}" \
             -f
 
       - name: Merge PR to main
