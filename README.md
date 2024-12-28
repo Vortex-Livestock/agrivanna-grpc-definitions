@@ -34,37 +34,47 @@ The following programs should be installed:
 
 ## Quick Start
 
-1. Clone the repository
-
-```bash
-$ git clone git@github.com:Vortex-Livestock/agrivanna-grpc-definitions.git
-```
-
-2. Change directory to the project folder
-
-```bash
-$ cd agrivanna-grpc-definitions
-```
-
-3. Install protobuff compiler
+1. Install protobuff compiler
 
 ```bash
 $ brew install protobuf
 ```
 
-4. Install the Go dependencies
+2. Clone the repository
+
+```bash
+$ git clone git@github.com:Vortex-Livestock/agrivanna-grpc-definitions.git
+```
+
+3. Change directory to the project folder
+
+```bash
+$ cd agrivanna-grpc-definitions
+```
+
+4. Install the protobuf Go plugin
+
+```bash
+$ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+$ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+$ export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
+5. Install the Go dependencies
 
 ```bash
 $ make install
 ```
 
-5. Generate the gRPC code
+## Other Commands
+
+- Generate the gRPC code
 
 ```bash
 $ make proto
 ```
-
-## Other Commands
 
 - To clean the generated code
 
