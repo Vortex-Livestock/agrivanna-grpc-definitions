@@ -68,13 +68,14 @@ jobs:
         run: |
           git checkout devel
           git pull origin devel
-          release_branch="release/v${{ env.next_version }}"
+          release_branch="release/${{ env.next_version }}"
           git checkout -b $release_branch
           git push origin $release_branch
           echo "release_branch=$release_branch" >> $GITHUB_ENV
 
       - name: Commit changes to release branch
         run: |
+          make install
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add .
