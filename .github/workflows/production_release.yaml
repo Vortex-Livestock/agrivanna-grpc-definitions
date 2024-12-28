@@ -37,12 +37,10 @@ jobs:
       - name: Lint the proto files
         run: buf lint
 
-      - name: Fetch all branches
-        run: git fetch --all
-
       - name: Extract current version
         id: version
         run: |
+          git fetch --tags
           current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "current_version=$current_version" >> $GITHUB_ENV
 
