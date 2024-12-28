@@ -1,5 +1,8 @@
 # Agrivanna gRPC Definitions
 
+[![Production Release](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/production_release.yaml/badge.svg)](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/production_release.yaml)
+[![Continuous Integration](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/continuous_integration.yaml/badge.svg)](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/continuous_integration.yaml)
+
 ## Table of Contents
 
 - [Contributors](#contributors)
