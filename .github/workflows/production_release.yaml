@@ -15,30 +15,17 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
-        with:
-          ref: devel
-
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v3
 
       - name: Install Buf CLI
         uses: bufbuild/buf-setup-action@v1
 
-      - name: Install Go dependencies
-        run: make install
-
       - name: Lint the proto files
         run: buf lint
-
-      - name: Generate proto stubs
-        run: |
-          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-          export PATH="$PATH:$(go env GOPATH)/bin"
-          make proto
 
       - name: Extract current version
         id: version
@@ -76,20 +63,12 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Commit uncommitted changes
+      - name: Create tag and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add .
-          git commit -m "Auto-generated changes for release ${{ env.next_version }}" || echo "No changes to commit"
-
-      - name: Checkout and prepare branches
-        run: |
-          git checkout devel
-          git pull origin devel
-          git checkout main
-          git pull origin main
-          git checkout devel
+          git tag ${{ env.next_version }}
+          git push origin ${{ env.next_version }}
 
       - name: Create PR from devel to main
         run: |
@@ -110,13 +89,6 @@ jobs:
             --admin
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
-
-      - name: Create tag and push
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git tag ${{ env.next_version }}
-          git push origin ${{ env.next_version }}
 
       - name: Create GitHub Release
         env:
