@@ -1,34 +1,34 @@
 syntax = "proto3";
 
-package proto;
+package proto.v1;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
 
 service AnimalService {
-  rpc GetAnimalById(GetAnimalByIdRequest) returns (Animal);
-  rpc GetAnimals(GetAnimalsRequest) returns (GetAnimalsResponse);
-  rpc CreateAnimal(CreateAnimalRequest) returns (Animal);
-  rpc UpdateAnimal(UpdateAnimalRequest) returns (Animal);
-  rpc DeleteAnimal(DeleteAnimalRequest) returns (DeleteAnimalResponse);
+  rpc GetAnimalById (GetAnimalByIdRequest) returns (GetAnimalByIdResponse);
+  rpc GetAnimals (GetAnimalsRequest) returns (GetAnimalsResponse);
+  rpc CreateAnimal (CreateAnimalRequest) returns (CreateAnimalResponse);
+  rpc UpdateAnimal (UpdateAnimalRequest) returns (UpdateAnimalResponse);
+  rpc DeleteAnimal (DeleteAnimalRequest) returns (DeleteAnimalResponse);
 }
 
 enum AnimalType {
-  ANIMAL_TYPE_UNKNOWN = 0;
+  ANIMAL_TYPE_UNSPECIFIED = 0;
   ANIMAL_TYPE_COW = 1;
 }
 
 enum AnimalStatus {
-  ANIMAL_STATUS_UNKNOWN     = 0;
-  ANIMAL_STATUS_ACTIVE      = 1;
-  ANIMAL_STATUS_SOLD        = 2;
-  ANIMAL_STATUS_DECEASED    = 3;
+  ANIMAL_STATUS_UNSPECIFIED = 0;
+  ANIMAL_STATUS_ACTIVE = 1;
+  ANIMAL_STATUS_SOLD = 2;
+  ANIMAL_STATUS_DECEASED = 3;
 }
 
 message Animal {
   string id         = 1;  
   string farm_id    = 2;  
   string ear_tag_id = 3;  
-  AnimalType type = 4;
+  AnimalType type   = 4;
   string breed      = 5;
   string birth_date = 6;  
   AnimalStatus status = 7;
@@ -38,6 +38,10 @@ message Animal {
 
 message GetAnimalByIdRequest {
   string id = 1;
+}
+
+message GetAnimalByIdResponse {
+  Animal animal = 1;
 }
 
 message GetAnimalsRequest {
@@ -51,20 +55,28 @@ message GetAnimalsResponse {
 message CreateAnimalRequest {
   string farm_id    = 1;
   string ear_tag_id = 2;
-  AnimalType type = 3;
+  AnimalType type   = 3;
   string breed      = 4;
   string birth_date = 5;
   AnimalStatus status = 6;
+}
+
+message CreateAnimalResponse {
+  Animal animal = 1;
 }
 
 message UpdateAnimalRequest {
   string id         = 1;  
   string farm_id    = 2;  
   string ear_tag_id = 3;  
-  AnimalType type = 4;
+  AnimalType type   = 4;
   string breed      = 5;
   string birth_date = 6;  
   AnimalStatus status = 7;
+}
+
+message UpdateAnimalResponse {
+  Animal animal = 1;
 }
 
 message DeleteAnimalRequest {

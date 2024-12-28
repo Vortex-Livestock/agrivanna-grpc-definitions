@@ -1,4 +1,4 @@
-name: Production Release Workflow
+name: Production Release
 
 on:
   workflow_dispatch:
@@ -30,15 +30,15 @@ jobs:
       - name: Install Go dependencies
         run: make install
 
+      - name: Lint the proto files
+        run: buf lint
+
       - name: Generate proto stubs
         run: |
           go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
           export PATH="$PATH:$(go env GOPATH)/bin"
           make proto
-
-      - name: Lint the proto files
-        run: buf lint
 
       - name: Extract current version
         id: version
