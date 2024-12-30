@@ -1,6 +1,6 @@
 # Agrivanna gRPC Definitions
 
-[![Production Release](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/production_release.yaml/badge.svg)](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/production_release.yaml)
+[![Production Release](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/release.yaml/badge.svg)](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/release.yaml)
 [![Continuous Integration](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/continuous_integration.yaml/badge.svg)](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/actions/workflows/continuous_integration.yaml)
 
 Agrivanna gRPC Definitions is a repository that contains the gRPC definitions for the Agrivanna project.
@@ -10,7 +10,9 @@ Agrivanna gRPC Definitions is a repository that contains the gRPC definitions fo
 - [Setup](#setup)
 - [Quick Start](#quick-start)
 - [Other Commands](#other-commands)
-- [Release](#release)
+- [Git Workflow](#git-workflow)
+- [Branch Naming Convention](#branch-naming-convention)
+- [Commit Message Convention](#commit-message-convention)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -65,9 +67,41 @@ $ make proto
 $ make clean
 ```
 
-## Release
+## Git Workflow
 
-- [v0.0.1](https://github.com/Vortex-Livestock/agrivanna-grpc-definitions/releases/tag/v0.0.1)
+- The `devel` branch is the default branch.
+- The `main` branch is the production branch.
+
+## Branch Naming Convention
+
+- Feature branches should be named as `feature/AG-<jira-ticket-number>-<feature-name>`.
+- Bugfix branches should be named as `bugfix/AG-<jira-ticket-number>-<bugfix-name>`.
+- Hotfix branches should be named as `hotfix/AG-<jira-ticket-number>-<hotfix-name>`.
+- Release branches should be named as `release/AG-<jira-ticket-number>-<release-name>`.
+
+The branche name should be in the following format:
+
+```bash
+git checkout -b feature/AG-76-add-protobuff-definitions
+```
+
+## Commit Message Convention
+
+The basic structure includes:
+
+- fix: for bug fixes
+- feat: for new features
+- chore: for routine tasks
+- docs: for documentation changes
+- style: for code style changes
+- refactor: for code refactoring
+- test: for adding or modifying tests
+
+The commit message should be in the following format:
+
+```bash
+git commit -m "feat: AG-76 Add protobuff definitions"
+```
 
 ## Contributors
 
