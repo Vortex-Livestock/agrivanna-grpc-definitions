@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
+
+service ProductionRecordService {
+  rpc GetProductionRecordById(GetProductionRecordByIdRequest) returns (GetProductionRecordByIdResponse);
+  rpc GetProductionRecords(GetProductionRecordsRequest) returns (GetProductionRecordsResponse);
+  rpc CreateProductionRecord(CreateProductionRecordRequest) returns (CreateProductionRecordResponse);
+  rpc UpdateProductionRecord(UpdateProductionRecordRequest) returns (UpdateProductionRecordResponse);
+  rpc DeleteProductionRecord(DeleteProductionRecordRequest) returns (DeleteProductionRecordResponse);
+}
+
+enum ProductionRecordType {
+  PRODUCTION_RECORD_TYPE_UNSPECIFIED = 0;
+  PRODUCTION_RECORD_TYPE_MILK = 1;
+  PRODUCTION_RECORD_TYPE_CHEESE = 2;
+  PRODUCTION_RECORD_TYPE_YOGURT = 3;
+}
+
+message ProductionRecord {
+  string id = 1;
+  string farm_id = 2;
+  string animal_id = 3;
+  ProductionRecordType type = 4;
+  string quantity = 5;
+  string unit = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message GetProductionRecordByIdRequest {
+  string id = 1;
+}
+
+message GetProductionRecordByIdResponse {
+  ProductionRecord production_record = 1;
+}
+
+message GetProductionRecordsRequest {
+  string farm_id = 1;
+}
+
+message GetProductionRecordsResponse {
+  repeated ProductionRecord production_records = 1;
+}
+
+message CreateProductionRecordRequest {
+  string farm_id = 1;
+  string animal_id = 2;
+  ProductionRecordType type = 3;
+  string quantity = 4;
+  string unit = 5;
+}
+
+message CreateProductionRecordResponse {
+  ProductionRecord production_record = 1;
+}
+
+message UpdateProductionRecordRequest {
+  string id = 1;
+  string farm_id = 2;
+  string animal_id = 3;
+  ProductionRecordType type = 4;
+  string quantity = 5;
+  string unit = 6;
+}
+
+message UpdateProductionRecordResponse {
+  ProductionRecord production_record = 1;
+}
+
+message DeleteProductionRecordRequest {
+  string id = 1;
+}
+
+message DeleteProductionRecordResponse {
+  string id = 1;
+}
