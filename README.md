@@ -77,7 +77,6 @@ $ make clean
 - Feature branches should be named as `feature/AG-<jira-ticket-number>-<feature-name>`.
 - Bugfix branches should be named as `bugfix/AG-<jira-ticket-number>-<bugfix-name>`.
 - Hotfix branches should be named as `hotfix/AG-<jira-ticket-number>-<hotfix-name>`.
-- Release branches should be named as `release/AG-<jira-ticket-number>-<release-name>`.
 
 The branche name should be in the following format:
 
@@ -89,13 +88,13 @@ git checkout -b feature/AG-76-add-protobuff-definitions
 
 The basic structure includes:
 
-- fix: for bug fixes
-- feat: for new features
-- chore: for routine tasks
-- docs: for documentation changes
-- style: for code style changes
-- refactor: for code refactoring
-- test: for adding or modifying tests
+- `fix`: for bug fixes
+- `feat`: for new features
+- `chore`: for routine tasks
+- `docs`: for documentation changes
+- `style`: for code style changes
+- `refactor`: for code refactoring
+- `test`: for adding or modifying tests
 
 The commit message should be in the following format:
 
