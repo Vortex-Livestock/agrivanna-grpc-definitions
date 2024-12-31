@@ -2,7 +2,7 @@
 #  Variables
 # ------------------------------------------------------------------------------
 PROTO_SRC_DIR   := proto
-PROTO_OUT_DIR   := internal/pb
+PROTO_OUT_DIR   := proto/pb
 
 # ------------------------------------------------------------------------------
 # Install dependencies
