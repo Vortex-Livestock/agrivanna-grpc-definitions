@@ -18,11 +18,11 @@ Agrivanna gRPC Definitions is a repository that contains the gRPC definitions fo
 
 ## Setup
 
+The following programs should be installed:
+
 > [!IMPORTANT]
 >
 > If you are using Windows or Linux, you need to install the following programs using the package manager of your operating system. The following instructions use Homebrew, which is a package manager for Mac OS.
-
-The following programs should be installed:
 
 - [Homebrew](https://brew.sh/)
 - [Go](https://golang.org/doc/install)
@@ -51,11 +51,11 @@ $ make install
 
 ## Other Commands
 
+- Generate the gRPC code
+
 > [!TIP]
 >
 > Only run this command if you have made changes to the `.proto` files.
-
-- Generate the gRPC code
 
 ```bash
 $ make proto

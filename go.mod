@@ -1,4 +1,4 @@
-module github.com/Vortex-Livestock/agrivanna-grpc-definitions
+module github.com/agrivanna/agrivanna-grpc-definitions
 
 go 1.23.3
 
