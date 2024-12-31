@@ -3,7 +3,6 @@ name: Continuous Integration
 on:
   pull_request:
     branches:
-      - main
       - devel
       - feature/*
 
@@ -14,6 +13,8 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          ref: devel
 
       - name: Install Buf CLI
         uses: bufbuild/buf-setup-action@v1
