@@ -25,9 +25,9 @@ enum AnimalStatus {
 }
 
 message Animal {
-  int32 id         = 1;  
-  int32 farm_id    = 2;  
-  int32 ear_tag_id = 3;  
+  uint64 id         = 1;  
+  uint64 farm_id    = 2;  
+  uint64 ear_tag_id = 3;  
   AnimalType type   = 4;
   string breed      = 5;
   string birth_date = 6;  
@@ -54,8 +54,8 @@ message GetAnimalsResponse {
 }
 
 message CreateAnimalRequest {
-  uint32 farm_id    = 1;
-  uint32 ear_tag_id = 2;
+  uint64 farm_id    = 1;
+  uint64 ear_tag_id = 2;
   AnimalType type   = 3;
   string breed      = 4;
   string birth_date = 5;
@@ -67,9 +67,9 @@ message CreateAnimalResponse {
 }
 
 message UpdateAnimalRequest {
-  uint32 id         = 1;  
-  uint32 farm_id    = 2;  
-  uint32 ear_tag_id = 3;  
+  uint64 id         = 1;  
+  uint64 farm_id    = 2;  
+  uint64 ear_tag_id = 3;  
   AnimalType type   = 4;
   string breed      = 5;
   string birth_date = 6;  
