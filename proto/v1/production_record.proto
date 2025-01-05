@@ -20,14 +20,15 @@ enum ProductionRecordType {
 }
 
 message ProductionRecord {
-  string id = 1;
-  string farm_id = 2;
-  string animal_id = 3;
+  uint32 id = 1;
+  uint32 farm_id = 2;
+  uint32 animal_id = 3;
   ProductionRecordType type = 4;
-  string quantity = 5;
+  uint32 quantity = 5;
   string unit = 6;
   string created_at = 7;
   string updated_at = 8;
+  string deleted_at = 9;
 }
 
 message GetProductionRecordByIdRequest {
@@ -47,10 +48,10 @@ message GetProductionRecordsResponse {
 }
 
 message CreateProductionRecordRequest {
-  string farm_id = 1;
-  string animal_id = 2;
+  uint32 farm_id = 1;
+  uint32 animal_id = 2;
   ProductionRecordType type = 3;
-  string quantity = 4;
+  uint32 quantity = 4;
   string unit = 5;
 }
 
@@ -59,11 +60,11 @@ message CreateProductionRecordResponse {
 }
 
 message UpdateProductionRecordRequest {
-  string id = 1;
-  string farm_id = 2;
-  string animal_id = 3;
+  uint32 id = 1;
+  uint32 farm_id = 2;
+  uint32 animal_id = 3;
   ProductionRecordType type = 4;
-  string quantity = 5;
+  uint32 quantity = 5;
   string unit = 6;
 }
 
