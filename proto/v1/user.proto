@@ -12,7 +12,7 @@ service UserService {
   rpc GetUserByProviderId(GetUserByProviderIdRequest) returns (GetUserByProviderIdResponse);
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
-  rpc DeleteuserByProviderId(DeleteUserByProviderIdRequest) returns (DeleteUserByProviderResponse);
+  rpc DeleteUserByProviderId(DeleteUserByProviderIdRequest) returns (DeleteUserByProviderResponse);
 }
 
 message User {

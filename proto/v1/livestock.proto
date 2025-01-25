@@ -73,7 +73,7 @@ message CreateLivestockRequest {
 }
 
 message CreateLivestockResponse {
-  Livestock Livestock = 1;
+  Livestock livestock = 1;
 }
 
 message GetLivestockRequest {
@@ -81,7 +81,7 @@ message GetLivestockRequest {
 }
 
 message GetLivestockResponse {
-  Livestock Livestock = 1;
+  Livestock livestock = 1;
 }
 
 message GetLivestockByFarmIdRequest {
@@ -89,7 +89,7 @@ message GetLivestockByFarmIdRequest {
 }
 
 message GetLivestockByFarmIdResponse {
-  repeated Livestock Livestock = 1;
+  repeated Livestock livestock = 1;
 }
 
 message UpdateLivestockRequest {
@@ -106,7 +106,7 @@ message UpdateLivestockRequest {
 }
 
 message UpdateLivestockResponse {
-  Livestock Livestock = 1;
+  Livestock livestock = 1;
 }
 
 message DeleteLivestockRequest {
