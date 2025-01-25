@@ -23,8 +23,9 @@ const (
 	UserService_GetUser_FullMethodName                = "/proto.v1.UserService/GetUser"
 	UserService_GetUserByProviderId_FullMethodName    = "/proto.v1.UserService/GetUserByProviderId"
 	UserService_UpdateUser_FullMethodName             = "/proto.v1.UserService/UpdateUser"
+	UserService_UpdateUserByProviderId_FullMethodName = "/proto.v1.UserService/UpdateUserByProviderId"
 	UserService_DeleteUser_FullMethodName             = "/proto.v1.UserService/DeleteUser"
-	UserService_DeleteuserByProviderId_FullMethodName = "/proto.v1.UserService/DeleteuserByProviderId"
+	UserService_DeleteUserByProviderId_FullMethodName = "/proto.v1.UserService/DeleteUserByProviderId"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -35,8 +36,9 @@ type UserServiceClient interface {
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 	GetUserByProviderId(ctx context.Context, in *GetUserByProviderIdRequest, opts ...grpc.CallOption) (*GetUserByProviderIdResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
+	UpdateUserByProviderId(ctx context.Context, in *UpdateUserByProviderIdRequest, opts ...grpc.CallOption) (*UpdateUserByProviderIdResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
-	DeleteuserByProviderId(ctx context.Context, in *DeleteUserByProviderIdRequest, opts ...grpc.CallOption) (*DeleteUserByProviderResponse, error)
+	DeleteUserByProviderId(ctx context.Context, in *DeleteUserByProviderIdRequest, opts ...grpc.CallOption) (*DeleteUserByProviderIdResponse, error)
 }
 
 type userServiceClient struct {
@@ -87,6 +89,16 @@ func (c *userServiceClient) UpdateUser(ctx context.Context, in *UpdateUserReques
 	return out, nil
 }
 
+func (c *userServiceClient) UpdateUserByProviderId(ctx context.Context, in *UpdateUserByProviderIdRequest, opts ...grpc.CallOption) (*UpdateUserByProviderIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateUserByProviderIdResponse)
+	err := c.cc.Invoke(ctx, UserService_UpdateUserByProviderId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteUserResponse)
@@ -97,10 +109,10 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserReques
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteuserByProviderId(ctx context.Context, in *DeleteUserByProviderIdRequest, opts ...grpc.CallOption) (*DeleteUserByProviderResponse, error) {
+func (c *userServiceClient) DeleteUserByProviderId(ctx context.Context, in *DeleteUserByProviderIdRequest, opts ...grpc.CallOption) (*DeleteUserByProviderIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteUserByProviderResponse)
-	err := c.cc.Invoke(ctx, UserService_DeleteuserByProviderId_FullMethodName, in, out, cOpts...)
+	out := new(DeleteUserByProviderIdResponse)
+	err := c.cc.Invoke(ctx, UserService_DeleteUserByProviderId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,8 +127,9 @@ type UserServiceServer interface {
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
 	GetUserByProviderId(context.Context, *GetUserByProviderIdRequest) (*GetUserByProviderIdResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
+	UpdateUserByProviderId(context.Context, *UpdateUserByProviderIdRequest) (*UpdateUserByProviderIdResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
-	DeleteuserByProviderId(context.Context, *DeleteUserByProviderIdRequest) (*DeleteUserByProviderResponse, error)
+	DeleteUserByProviderId(context.Context, *DeleteUserByProviderIdRequest) (*DeleteUserByProviderIdResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -139,11 +152,14 @@ func (UnimplementedUserServiceServer) GetUserByProviderId(context.Context, *GetU
 func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
+func (UnimplementedUserServiceServer) UpdateUserByProviderId(context.Context, *UpdateUserByProviderIdRequest) (*UpdateUserByProviderIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserByProviderId not implemented")
+}
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteuserByProviderId(context.Context, *DeleteUserByProviderIdRequest) (*DeleteUserByProviderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteuserByProviderId not implemented")
+func (UnimplementedUserServiceServer) DeleteUserByProviderId(context.Context, *DeleteUserByProviderIdRequest) (*DeleteUserByProviderIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserByProviderId not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -238,6 +254,24 @@ func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_UpdateUserByProviderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserByProviderIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpdateUserByProviderId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_UpdateUserByProviderId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpdateUserByProviderId(ctx, req.(*UpdateUserByProviderIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
@@ -256,20 +290,20 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_DeleteuserByProviderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_DeleteUserByProviderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserByProviderIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteuserByProviderId(ctx, in)
+		return srv.(UserServiceServer).DeleteUserByProviderId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_DeleteuserByProviderId_FullMethodName,
+		FullMethod: UserService_DeleteUserByProviderId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteuserByProviderId(ctx, req.(*DeleteUserByProviderIdRequest))
+		return srv.(UserServiceServer).DeleteUserByProviderId(ctx, req.(*DeleteUserByProviderIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -298,12 +332,16 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_UpdateUser_Handler,
 		},
 		{
+			MethodName: "UpdateUserByProviderId",
+			Handler:    _UserService_UpdateUserByProviderId_Handler,
+		},
+		{
 			MethodName: "DeleteUser",
 			Handler:    _UserService_DeleteUser_Handler,
 		},
 		{
-			MethodName: "DeleteuserByProviderId",
-			Handler:    _UserService_DeleteuserByProviderId_Handler,
+			MethodName: "DeleteUserByProviderId",
+			Handler:    _UserService_DeleteUserByProviderId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
