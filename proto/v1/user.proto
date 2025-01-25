@@ -11,6 +11,7 @@ service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc GetUserByProviderId(GetUserByProviderIdRequest) returns (GetUserByProviderIdResponse);
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc UpdateUserByProviderId(UpdateUserByProviderIdRequest) returns (UpdateUserByProviderIdResponse);
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
   rpc DeleteUserByProviderId(DeleteUserByProviderIdRequest) returns (DeleteUserByProviderIdResponse);
 }
@@ -19,16 +20,18 @@ message User {
   string id = 1;             
   string auth_provider_id = 2; 
   string email = 3;
-  string name = 4;
-  bool onboarded = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
+  string first_name = 4;
+  string last_name = 5;
+  bool onboarded = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
 }
 
 message CreateUserRequest {
-  string auth_provider_id = 2; 
-  string email = 3;
-  string name = 4;
+  string auth_provider_id = 1; 
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
   bool onboarded = 5;
 }
 
@@ -54,13 +57,25 @@ message GetUserByProviderIdResponse {
 
 message UpdateUserRequest {
   string id = 1;             
-  string auth_provider_id = 2; 
-  string email = 3;
-  string name = 4;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
   bool onboarded = 5;
 }
 
 message UpdateUserResponse {
+  User user = 1;
+}
+
+message UpdateUserByProviderIdRequest {
+  string auth_provider_id = 1;             
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  bool onboarded = 5;
+}
+
+message UpdateUserByProviderIdResponse {
   User user = 1;
 }
 
