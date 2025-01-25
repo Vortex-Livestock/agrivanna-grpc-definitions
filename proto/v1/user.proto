@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
+
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUserByProviderId(GetUserByProviderIdRequest) returns (GetUserByProviderIdResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc DeleteuserByProviderId(DeleteUserByProviderIdRequest) returns (DeleteUserByProviderResponse);
+}
+
+message User {
+  string id = 1;             
+  string auth_provider_id = 2; 
+  string email = 3;
+  string name = 4;
+  bool onboarded = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message CreateUserRequest {
+  string auth_provider_id = 2; 
+  string email = 3;
+  string name = 4;
+  bool onboarded = 5;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message GetUserByProviderIdRequest {
+  string auth_provider_id = 1;
+}
+
+message GetUserByProviderIdResponse {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+  string id = 1;             
+  string auth_provider_id = 2; 
+  string email = 3;
+  string name = 4;
+  bool onboarded = 5;
+}
+
+message UpdateUserResponse {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {
+
+}
+
+message DeleteUserByProviderIdRequest {
+  string auth_provider_id = 1;
+}
+
+message DeleteUserByProviderResponse {
+  
+}
