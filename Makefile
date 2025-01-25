@@ -20,7 +20,6 @@ install:
 .PHONY: proto
 proto:
 	@echo "Generating protobuf stubs from '$(PROTO_SRC_DIR)' into '$(PROTO_OUT_DIR)'..."
-	mkdir -p proto/pb
 	protoc \
 		-I . \
 		--go_out=$(PROTO_OUT_DIR) \
@@ -37,6 +36,6 @@ proto:
 .PHONY: clean
 clean:
 	@echo "Cleaning up..."
-	rm -rf $(PROTO_OUT_DIR)/
+	rm -rf $(PROTO_OUT_DIR)/*
 
 	@echo "Clean up completed."
