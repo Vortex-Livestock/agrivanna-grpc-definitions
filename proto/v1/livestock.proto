@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
+
+import "google/protobuf/timestamp.proto";
+import "proto/v1/vaccination_record.proto";
+import "proto/v1/health_record.proto";
+import "proto/v1/weight_record.proto";
+import "proto/v1/temperature_record.proto";
+import "proto/v1/breeding_record.proto";
+
+service LivestockService {
+  rpc CreateLivestock (CreateLivestockRequest) returns (CreateLivestockResponse);
+  rpc GetLivestock (GetLivestockRequest) returns (GetLivestockResponse);
+  rpc GetLivestockByFarmId (GetLivestockByFarmIdRequest) returns (GetLivestockByFarmIdResponse);
+  rpc UpdateLivestock (UpdateLivestockRequest) returns (UpdateLivestockResponse);
+  rpc DeleteLivestock (DeleteLivestockRequest) returns (DeleteLivestockResponse);
+}
+
+enum LivestockType {
+  LIVESTOCK_TYPE_UNSPECIFIED = 0;
+  LIVESTOCK_TYPE_COW = 1;
+  LIVESTOCK_TYPE_BULL = 2;
+  LIVESTOCK_TYPE_CALF = 3;
+}
+
+enum LivestockSex {
+  LIVESTOCK_SEX_UNSPECIFIED = 0;
+  LIVESTOCK_SEX_MALE = 1;
+  LIVESTOCK_SEX_FEMALE = 2;
+}
+
+enum LivestockStatus {
+  LIVESTOCK_STATUS_UNSPECIFIED = 0;
+  LIVESTOCK_STATUS_ACTIVE = 1;
+  LIVESTOCK_STATUS_SOLD = 2;
+  LIVESTOCK_STATUS_DECEASED = 3;
+  LIVESTOCK_STATUS_RETIRED = 4;
+}
+
+message Livestock {
+  string id = 1;
+  string farm_id = 2;
+  LivestockType type = 3;
+  string breed = 4;
+  google.protobuf.Timestamp birth_date = 5;
+  LivestockSex sex = 6;
+  LivestockStatus status = 7;
+  string tag_id = 8;    
+  string sire_id = 9; 
+  string dam_id = 10;  
+  repeated VaccinationRecord vaccination_records = 11;
+  repeated HealthRecord health_records = 12;
+  repeated WeightRecord weight_records = 13;
+  repeated TemperatureRecord temperature_records = 14;
+  repeated BreedingRecord breeding_records = 15;
+  google.protobuf.Timestamp created_at = 16;
+  google.protobuf.Timestamp updated_at = 17;
+}
+
+message CreateLivestockRequest {
+  string farm_id = 1;
+  LivestockType type = 2;
+  string breed = 3;
+  google.protobuf.Timestamp birth_date = 4;
+  LivestockSex sex = 5;
+  LivestockStatus status = 6;
+  string tag_id = 7;    
+  string sire_id = 8; 
+  string dam_id = 9;  
+}
+
+message CreateLivestockResponse {
+  Livestock livestock = 1;
+}
+
+message GetLivestockRequest {
+  string id = 1;
+}
+
+message GetLivestockResponse {
+  Livestock livestock = 1;
+}
+
+message GetLivestockByFarmIdRequest {
+  string farm_id = 1;
+}
+
+message GetLivestockByFarmIdResponse {
+  repeated Livestock livestock = 1;
+}
+
+message UpdateLivestockRequest {
+  string id = 1;
+  string farm_id = 2;
+  LivestockType type = 3;
+  string breed = 4;
+  google.protobuf.Timestamp birth_date = 5;
+  LivestockSex sex = 6;
+  LivestockStatus status = 7;
+  string tag_id = 8;    
+  string sire_id = 9; 
+  string dam_id = 10;  
+}
+
+message UpdateLivestockResponse {
+  Livestock livestock = 1;
+}
+
+message DeleteLivestockRequest {
+  string id = 1;
+}
+
+message DeleteLivestockResponse {
+
+}
