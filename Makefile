@@ -1,41 +1,42 @@
 # ------------------------------------------------------------------------------
 #  Variables
 # ------------------------------------------------------------------------------
-PROTO_SRC_DIR   := proto
-PROTO_OUT_DIR   := proto/pb
+PROTO_BASE_DIR := proto
+GENERATED_DIR  := generated
+MICROSERVICES  := livestock user farm
 
 # ------------------------------------------------------------------------------
-# Install dependencies
+#  Install dependencies
 # ------------------------------------------------------------------------------
 .PHONY: install
 install:
 	@echo "Installing dependencies..."
 	go mod tidy
-
 	@echo "Dependencies installed."
 
 # ------------------------------------------------------------------------------
-#  Generate protobuf stubs
+#  Generate protobuf stubs for each microservice
 # ------------------------------------------------------------------------------
 .PHONY: proto
 proto:
-	@echo "Generating protobuf stubs from '$(PROTO_SRC_DIR)' into '$(PROTO_OUT_DIR)'..."
-	protoc \
-		-I . \
-		--go_out=$(PROTO_OUT_DIR) \
-		--go_opt=paths=source_relative \
-		--go-grpc_out=$(PROTO_OUT_DIR) \
-		--go-grpc_opt=paths=source_relative \
-		$(PROTO_SRC_DIR)/v1/*.proto
-
+	@echo "Generating protobuf stubs..."
+	@for svc in $(MICROSERVICES); do \
+		echo "Generating stubs for $$svc..."; \
+		protoc \
+			-I . \
+			--go_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
+			--go-grpc_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
+			$(PROTO_BASE_DIR)/$$svc/v1/*.proto; \
+	done
 	@echo "Protobuf generation completed."
 
 # ------------------------------------------------------------------------------
-# Clean up
+#  Clean up
 # ------------------------------------------------------------------------------
 .PHONY: clean
 clean:
-	@echo "Cleaning up..."
-	rm -rf $(PROTO_OUT_DIR)/*
-
+	@echo "Cleaning up generated stubs..."
+	@for svc in $(MICROSERVICES); do \
+		rm -rf $(GENERATED_DIR)/$$svc/*; \
+	done
 	@echo "Clean up completed."
