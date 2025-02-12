@@ -4,11 +4,11 @@ package proto.v1.livestock;
 
 option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
-import "vaccination_record.proto";
-import "health_record.proto";
-import "weight_record.proto";
-import "temperature_record.proto";
-import "breeding_record.proto";
+import "proto/v1/livestock/vaccination_record.proto";
+import "proto/v1/livestock/health_record.proto";
+import "proto/v1/livestock/weight_record.proto";
+import "proto/v1/livestock/temperature_record.proto";
+import "proto/v1/livestock/breeding_record.proto";
 
 service LivestockService {
   rpc CreateLivestock (CreateLivestockRequest) returns (CreateLivestockResponse);

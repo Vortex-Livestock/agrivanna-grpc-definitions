@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: weight_record.proto
+// source: proto/v1/livestock/weight_record.proto
 
 package livestock
 
@@ -231,5 +231,5 @@ var WeightRecordService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "weight_record.proto",
+	Metadata: "proto/v1/livestock/weight_record.proto",
 }

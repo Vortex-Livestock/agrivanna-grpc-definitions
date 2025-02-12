@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: vaccination_record.proto
+// source: proto/v1/livestock/vaccination_record.proto
 
 package livestock
 
@@ -232,5 +232,5 @@ var VaccinationRecordService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "vaccination_record.proto",
+	Metadata: "proto/v1/livestock/vaccination_record.proto",
 }

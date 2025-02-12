@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: farm.proto
+// source: proto/v1/farm/farm.proto
 
 package farm
 
@@ -269,5 +269,5 @@ var FarmService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "farm.proto",
+	Metadata: "proto/v1/farm/farm.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: livestock.proto
+// source: proto/v1/livestock/livestock.proto
 
 package livestock
 
@@ -269,5 +269,5 @@ var LivestockService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "livestock.proto",
+	Metadata: "proto/v1/livestock/livestock.proto",
 }

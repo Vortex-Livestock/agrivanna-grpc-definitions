@@ -20,11 +20,10 @@ install:
 .PHONY: proto
 proto:
 	@echo "Generating protobuf stubs..."
-	@mkdir -p $(GENERATED_DIR)
 	@for svc in $(MICROSERVICES); do \
 		echo "Generating stubs for $$svc..."; \
 		protoc \
-			-I $(PROTO_BASE_DIR)/$$svc \
+			-I . \
 			--go_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
 			--go-grpc_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
 			$(PROTO_BASE_DIR)/$$svc/*.proto; \
