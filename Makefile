@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Variables
 # ------------------------------------------------------------------------------
-PROTO_BASE_DIR := proto/v1
+PROTO_BASE_DIR := proto
 GENERATED_DIR  := generated
 MICROSERVICES  := livestock user farm
 
@@ -26,7 +26,7 @@ proto:
 			-I . \
 			--go_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
 			--go-grpc_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
-			$(PROTO_BASE_DIR)/$$svc/*.proto; \
+			$(PROTO_BASE_DIR)/$$svc/v1/*.proto; \
 	done
 	@echo "Protobuf generation completed."
 

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package proto.livestock.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
+
+service WeightRecordService {
+  rpc CreateWeightRecord(CreateWeightRecordRequest) returns (CreateWeightRecordResponse);
+  rpc GetWeightRecord(GetWeightRecordRequest) returns (GetWeightRecordResponse);
+  rpc UpdateWeightRecord(UpdateWeightRecordRequest) returns (UpdateWeightRecordResponse);
+  rpc DeleteWeightRecord(DeleteWeightRecordRequest) returns (DeleteWeightRecordResponse);
+}
+
+enum WeightRecordUnit {
+  WEIGHT_RECORD_UNIT_UNSPECIFIED = 0;
+  WEIGHT_RECORD_UNIT_GRAMS = 1;
+  WEIGHT_RECORD_UNIT_KG = 2;
+  WEIGHT_RECORD_UNIT_LB = 3;
+}
+
+message WeightRecord {
+  string id = 1;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float weight = 4;
+  WeightRecordUnit unit = 5; 
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message CreateWeightRecordRequest {
+  string livestock_id = 1;
+  string recorded_at = 2;
+  float weight = 3;
+  WeightRecordUnit unit = 4; 
+  string notes = 5;
+}
+
+message CreateWeightRecordResponse {
+  WeightRecord weight_record = 1;
+}
+
+message GetWeightRecordRequest {
+  string id = 1;
+}
+
+message GetWeightRecordResponse {
+  WeightRecord weight_record = 1;
+}
+
+message UpdateWeightRecordRequest {
+  string id = 1;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float weight = 4;
+  WeightRecordUnit unit = 5; 
+  string notes = 6;
+}
+
+message UpdateWeightRecordResponse {
+  WeightRecord weight_record = 1;
+}
+
+message DeleteWeightRecordRequest {
+  string id = 1;
+}
+
+message DeleteWeightRecordResponse {
+
+}
