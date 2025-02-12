@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: proto/v1/livestock.proto
+// source: livestock.proto
 
-package v1
+package livestock
 
 import (
 	context "context"
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LivestockService_CreateLivestock_FullMethodName      = "/proto.v1.LivestockService/CreateLivestock"
-	LivestockService_GetLivestock_FullMethodName         = "/proto.v1.LivestockService/GetLivestock"
-	LivestockService_GetLivestockByFarmId_FullMethodName = "/proto.v1.LivestockService/GetLivestockByFarmId"
-	LivestockService_UpdateLivestock_FullMethodName      = "/proto.v1.LivestockService/UpdateLivestock"
-	LivestockService_DeleteLivestock_FullMethodName      = "/proto.v1.LivestockService/DeleteLivestock"
+	LivestockService_CreateLivestock_FullMethodName      = "/proto.v1.livestock.LivestockService/CreateLivestock"
+	LivestockService_GetLivestock_FullMethodName         = "/proto.v1.livestock.LivestockService/GetLivestock"
+	LivestockService_GetLivestockByFarmId_FullMethodName = "/proto.v1.livestock.LivestockService/GetLivestockByFarmId"
+	LivestockService_UpdateLivestock_FullMethodName      = "/proto.v1.livestock.LivestockService/UpdateLivestock"
+	LivestockService_DeleteLivestock_FullMethodName      = "/proto.v1.livestock.LivestockService/DeleteLivestock"
 )
 
 // LivestockServiceClient is the client API for LivestockService service.
@@ -244,7 +244,7 @@ func _LivestockService_DeleteLivestock_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LivestockService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.LivestockService",
+	ServiceName: "proto.v1.livestock.LivestockService",
 	HandlerType: (*LivestockServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -269,5 +269,5 @@ var LivestockService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/livestock.proto",
+	Metadata: "livestock.proto",
 }

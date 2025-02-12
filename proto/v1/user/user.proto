@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.user;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
-
-import "google/protobuf/timestamp.proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/user";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
@@ -23,8 +21,8 @@ message User {
   string first_name = 4;
   string last_name = 5;
   bool onboarded = 6;
-  google.protobuf.Timestamp created_at = 7;
-  google.protobuf.Timestamp updated_at = 8;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateUserRequest {

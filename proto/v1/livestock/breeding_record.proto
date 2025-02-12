@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.livestock;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
-
-import "google/protobuf/timestamp.proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
 service BreedingRecordService {
   rpc CreateBreedingRecord(CreateBreedingRecordRequest) returns (CreateBreedingRecordResponse);
@@ -15,19 +13,21 @@ service BreedingRecordService {
 
 message BreedingRecord {
   string id = 1;
-  google.protobuf.Timestamp breeding_date = 2;
-  string sire_id = 3;
-  string dam_id = 4; 
-  string notes = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
+  string livestock_id = 2;
+  string breeding_date = 3;
+  string sire_id = 4;
+  string dam_id = 5; 
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateBreedingRecordRequest {
-  google.protobuf.Timestamp breeding_date = 1;
-  string sire_id = 2;
-  string dam_id = 3; 
-  string notes = 4;
+  string livestock_id = 1;
+  string breeding_date = 2;
+  string sire_id = 3;
+  string dam_id = 4; 
+  string notes = 5;
 }
 
 message CreateBreedingRecordResponse {
@@ -44,10 +44,11 @@ message GetBreedingRecordResponse {
 
 message UpdateBreedingRecordRequest {
   string id = 1;
-  google.protobuf.Timestamp breeding_date = 2;
-  string sire_id = 3;
-  string dam_id = 4; 
-  string notes = 5;
+  string livestock_id = 2;
+  string breeding_date = 3;
+  string sire_id = 4;
+  string dam_id = 5; 
+  string notes = 6;
 }
 
 message UpdateBreedingRecordResponse {

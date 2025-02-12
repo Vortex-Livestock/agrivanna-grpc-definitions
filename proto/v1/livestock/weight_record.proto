@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.livestock;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
-
-import "google/protobuf/timestamp.proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
 service WeightRecordService {
   rpc CreateWeightRecord(CreateWeightRecordRequest) returns (CreateWeightRecordResponse);
@@ -22,19 +20,21 @@ enum WeightRecordUnit {
 
 message WeightRecord {
   string id = 1;
-  google.protobuf.Timestamp recorded_at = 2;
-  float weight = 3;
-  WeightRecordUnit unit = 4; 
-  string notes = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float weight = 4;
+  WeightRecordUnit unit = 5; 
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateWeightRecordRequest {
-  google.protobuf.Timestamp recorded_at = 1;
-  float weight = 2;
-  WeightRecordUnit unit = 3; 
-  string notes = 4;
+  string livestock_id = 1;
+  string recorded_at = 2;
+  float weight = 3;
+  WeightRecordUnit unit = 4; 
+  string notes = 5;
 }
 
 message CreateWeightRecordResponse {
@@ -51,10 +51,11 @@ message GetWeightRecordResponse {
 
 message UpdateWeightRecordRequest {
   string id = 1;
-  google.protobuf.Timestamp recorded_at = 2;
-  float weight = 3;
-  WeightRecordUnit unit = 4; 
-  string notes = 5;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float weight = 4;
+  WeightRecordUnit unit = 5; 
+  string notes = 6;
 }
 
 message UpdateWeightRecordResponse {

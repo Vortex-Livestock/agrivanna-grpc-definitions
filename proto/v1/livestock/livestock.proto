@@ -1,15 +1,14 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.livestock;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
-import "google/protobuf/timestamp.proto";
-import "proto/v1/vaccination_record.proto";
-import "proto/v1/health_record.proto";
-import "proto/v1/weight_record.proto";
-import "proto/v1/temperature_record.proto";
-import "proto/v1/breeding_record.proto";
+import "vaccination_record.proto";
+import "health_record.proto";
+import "weight_record.proto";
+import "temperature_record.proto";
+import "breeding_record.proto";
 
 service LivestockService {
   rpc CreateLivestock (CreateLivestockRequest) returns (CreateLivestockResponse);
@@ -45,31 +44,33 @@ message Livestock {
   string farm_id = 2;
   LivestockType type = 3;
   string breed = 4;
-  google.protobuf.Timestamp birth_date = 5;
-  LivestockSex sex = 6;
-  LivestockStatus status = 7;
-  string tag_id = 8;    
-  string sire_id = 9; 
-  string dam_id = 10;  
-  repeated VaccinationRecord vaccination_records = 11;
-  repeated HealthRecord health_records = 12;
-  repeated WeightRecord weight_records = 13;
-  repeated TemperatureRecord temperature_records = 14;
-  repeated BreedingRecord breeding_records = 15;
-  google.protobuf.Timestamp created_at = 16;
-  google.protobuf.Timestamp updated_at = 17;
+  string birth_date = 5;
+  string location = 6;
+  LivestockSex sex = 7;
+  LivestockStatus status = 8;
+  string tag_id = 9;    
+  string sire_id = 10; 
+  string dam_id = 11;  
+  repeated VaccinationRecord vaccination_records = 12;
+  repeated HealthRecord health_records = 13;
+  repeated WeightRecord weight_records = 14;
+  repeated TemperatureRecord temperature_records = 15;
+  repeated BreedingRecord breeding_records = 16;
+  string created_at = 17;
+  string updated_at = 18;
 }
 
 message CreateLivestockRequest {
   string farm_id = 1;
   LivestockType type = 2;
   string breed = 3;
-  google.protobuf.Timestamp birth_date = 4;
-  LivestockSex sex = 5;
-  LivestockStatus status = 6;
-  string tag_id = 7;    
-  string sire_id = 8; 
-  string dam_id = 9;  
+  string birth_date = 4;
+  string location = 5;
+  LivestockSex sex = 6;
+  LivestockStatus status = 7;
+  string tag_id = 8;    
+  string sire_id = 9; 
+  string dam_id = 10;  
 }
 
 message CreateLivestockResponse {
@@ -97,12 +98,13 @@ message UpdateLivestockRequest {
   string farm_id = 2;
   LivestockType type = 3;
   string breed = 4;
-  google.protobuf.Timestamp birth_date = 5;
-  LivestockSex sex = 6;
-  LivestockStatus status = 7;
-  string tag_id = 8;    
-  string sire_id = 9; 
-  string dam_id = 10;  
+  string birth_date = 5;
+  string location = 6;
+  LivestockSex sex = 7;
+  LivestockStatus status = 8;
+  string tag_id = 9;    
+  string sire_id = 10; 
+  string dam_id = 11;  
 }
 
 message UpdateLivestockResponse {

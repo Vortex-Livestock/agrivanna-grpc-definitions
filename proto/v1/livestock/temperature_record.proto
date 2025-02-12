@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.livestock;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
-
-import "google/protobuf/timestamp.proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
 service TemperatureRecordService {
   rpc CreateTemperatureRecord(CreateTemperatureRecordRequest) returns (CreateTemperatureRecordResponse);
@@ -21,19 +19,21 @@ enum TemperatureRecordUnit {
 
 message TemperatureRecord {
   string id = 1;
-  google.protobuf.Timestamp recorded_at = 2;
-  float temperature = 3;
-  TemperatureRecordUnit unit = 4; 
-  string notes = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float temperature = 4;
+  TemperatureRecordUnit unit = 5; 
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateTemperatureRecordRequest {
-  google.protobuf.Timestamp recorded_at = 1;
-  float temperature = 2;
-  TemperatureRecordUnit unit = 3; 
-  string notes = 4;
+  string livestock_id = 1;
+  string recorded_at = 2;
+  float temperature = 3;
+  TemperatureRecordUnit unit = 4; 
+  string notes = 5;
 }
 
 message CreateTemperatureRecordResponse {
@@ -50,10 +50,11 @@ message GetTemperatureRecordResponse {
 
 message UpdateTemperatureRecordRequest {
   string id = 1;
-  google.protobuf.Timestamp recorded_at = 2;
-  float temperature = 3;
-  TemperatureRecordUnit unit = 4; 
-  string notes = 5;
+  string livestock_id = 2;
+  string recorded_at = 3;
+  float temperature = 4;
+  TemperatureRecordUnit unit = 5; 
+  string notes = 6;
 }
 
 message UpdateTemperatureRecordResponse {

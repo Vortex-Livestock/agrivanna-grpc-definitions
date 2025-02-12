@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: proto/v1/farm.proto
+// source: farm.proto
 
-package v1
+package farm
 
 import (
 	context "context"
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FarmService_CreateFarm_FullMethodName       = "/proto.v1.FarmService/CreateFarm"
-	FarmService_GetFarm_FullMethodName          = "/proto.v1.FarmService/GetFarm"
-	FarmService_GetFarmByOwnerId_FullMethodName = "/proto.v1.FarmService/GetFarmByOwnerId"
-	FarmService_UpdateFarm_FullMethodName       = "/proto.v1.FarmService/UpdateFarm"
-	FarmService_DeleteFarm_FullMethodName       = "/proto.v1.FarmService/DeleteFarm"
+	FarmService_CreateFarm_FullMethodName       = "/proto.v1.farm.FarmService/CreateFarm"
+	FarmService_GetFarm_FullMethodName          = "/proto.v1.farm.FarmService/GetFarm"
+	FarmService_GetFarmByOwnerId_FullMethodName = "/proto.v1.farm.FarmService/GetFarmByOwnerId"
+	FarmService_UpdateFarm_FullMethodName       = "/proto.v1.farm.FarmService/UpdateFarm"
+	FarmService_DeleteFarm_FullMethodName       = "/proto.v1.farm.FarmService/DeleteFarm"
 )
 
 // FarmServiceClient is the client API for FarmService service.
@@ -244,7 +244,7 @@ func _FarmService_DeleteFarm_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FarmService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.FarmService",
+	ServiceName: "proto.v1.farm.FarmService",
 	HandlerType: (*FarmServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -269,5 +269,5 @@ var FarmService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/farm.proto",
+	Metadata: "farm.proto",
 }

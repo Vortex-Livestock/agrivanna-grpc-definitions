@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: proto/v1/temperature_record.proto
+// source: temperature_record.proto
 
-package v1
+package livestock
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TemperatureRecordService_CreateTemperatureRecord_FullMethodName = "/proto.v1.TemperatureRecordService/CreateTemperatureRecord"
-	TemperatureRecordService_GetTemperatureRecord_FullMethodName    = "/proto.v1.TemperatureRecordService/GetTemperatureRecord"
-	TemperatureRecordService_UpdateTemperatureRecord_FullMethodName = "/proto.v1.TemperatureRecordService/UpdateTemperatureRecord"
-	TemperatureRecordService_DeleteTemperatureRecord_FullMethodName = "/proto.v1.TemperatureRecordService/DeleteTemperatureRecord"
+	TemperatureRecordService_CreateTemperatureRecord_FullMethodName = "/proto.v1.livestock.TemperatureRecordService/CreateTemperatureRecord"
+	TemperatureRecordService_GetTemperatureRecord_FullMethodName    = "/proto.v1.livestock.TemperatureRecordService/GetTemperatureRecord"
+	TemperatureRecordService_UpdateTemperatureRecord_FullMethodName = "/proto.v1.livestock.TemperatureRecordService/UpdateTemperatureRecord"
+	TemperatureRecordService_DeleteTemperatureRecord_FullMethodName = "/proto.v1.livestock.TemperatureRecordService/DeleteTemperatureRecord"
 )
 
 // TemperatureRecordServiceClient is the client API for TemperatureRecordService service.
@@ -211,7 +211,7 @@ func _TemperatureRecordService_DeleteTemperatureRecord_Handler(srv interface{}, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TemperatureRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.TemperatureRecordService",
+	ServiceName: "proto.v1.livestock.TemperatureRecordService",
 	HandlerType: (*TemperatureRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -232,5 +232,5 @@ var TemperatureRecordService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/temperature_record.proto",
+	Metadata: "temperature_record.proto",
 }

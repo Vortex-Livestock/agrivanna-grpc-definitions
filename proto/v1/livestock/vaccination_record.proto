@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package proto.v1;
+package proto.v1.livestock;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/proto/v1";
-
-import "google/protobuf/timestamp.proto";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
 
 service VaccinationRecordService {
   rpc CreateVaccinationRecord(CreateVaccinationRecordRequest) returns (CreateVaccinationRecordResponse);
@@ -15,19 +13,21 @@ service VaccinationRecordService {
 
 message VaccinationRecord {
   string id = 1;
-  google.protobuf.Timestamp date_administered = 2;
-  string vaccine_name = 3;
-  string veterinarian = 4;
-  string notes = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
+  string livestock_id = 2;
+  string date_administered = 3;
+  string vaccine_name = 4;
+  string veterinarian = 5;
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateVaccinationRecordRequest {
-  google.protobuf.Timestamp date_administered = 1;
-  string vaccine_name = 2;
-  string veterinarian = 3;
-  string notes = 4;
+  string livestock_id = 1;
+  string date_administered = 2;
+  string vaccine_name = 3;
+  string veterinarian = 4;
+  string notes = 5;
 }
 
 message CreateVaccinationRecordResponse {
@@ -44,10 +44,11 @@ message GetVaccinationRecordResponse {
 
 message UpdateVaccinationRecordRequest {
   string id = 1;
-  google.protobuf.Timestamp date_administered = 2;
-  string vaccine_name = 3;
-  string veterinarian = 4;
-  string notes = 5;
+  string livestock_id = 2;
+  string date_administered = 3;
+  string vaccine_name = 4;
+  string veterinarian = 5;
+  string notes = 6;
 }
 
 message UpdateVaccinationRecordResponse {

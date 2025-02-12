@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: proto/v1/breeding_record.proto
+// source: breeding_record.proto
 
-package v1
+package livestock
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BreedingRecordService_CreateBreedingRecord_FullMethodName = "/proto.v1.BreedingRecordService/CreateBreedingRecord"
-	BreedingRecordService_GetBreedingRecord_FullMethodName    = "/proto.v1.BreedingRecordService/GetBreedingRecord"
-	BreedingRecordService_UpdateBreedingRecord_FullMethodName = "/proto.v1.BreedingRecordService/UpdateBreedingRecord"
-	BreedingRecordService_DeleteBreedingRecord_FullMethodName = "/proto.v1.BreedingRecordService/DeleteBreedingRecord"
+	BreedingRecordService_CreateBreedingRecord_FullMethodName = "/proto.v1.livestock.BreedingRecordService/CreateBreedingRecord"
+	BreedingRecordService_GetBreedingRecord_FullMethodName    = "/proto.v1.livestock.BreedingRecordService/GetBreedingRecord"
+	BreedingRecordService_UpdateBreedingRecord_FullMethodName = "/proto.v1.livestock.BreedingRecordService/UpdateBreedingRecord"
+	BreedingRecordService_DeleteBreedingRecord_FullMethodName = "/proto.v1.livestock.BreedingRecordService/DeleteBreedingRecord"
 )
 
 // BreedingRecordServiceClient is the client API for BreedingRecordService service.
@@ -210,7 +210,7 @@ func _BreedingRecordService_DeleteBreedingRecord_Handler(srv interface{}, ctx co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var BreedingRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.BreedingRecordService",
+	ServiceName: "proto.v1.livestock.BreedingRecordService",
 	HandlerType: (*BreedingRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -231,5 +231,5 @@ var BreedingRecordService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/breeding_record.proto",
+	Metadata: "breeding_record.proto",
 }
