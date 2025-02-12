@@ -19,13 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName             = "/proto.v1.user.UserService/CreateUser"
-	UserService_GetUser_FullMethodName                = "/proto.v1.user.UserService/GetUser"
-	UserService_GetUserByProviderId_FullMethodName    = "/proto.v1.user.UserService/GetUserByProviderId"
-	UserService_UpdateUser_FullMethodName             = "/proto.v1.user.UserService/UpdateUser"
-	UserService_UpdateUserByProviderId_FullMethodName = "/proto.v1.user.UserService/UpdateUserByProviderId"
-	UserService_DeleteUser_FullMethodName             = "/proto.v1.user.UserService/DeleteUser"
-	UserService_DeleteUserByProviderId_FullMethodName = "/proto.v1.user.UserService/DeleteUserByProviderId"
+	UserService_CreateUser_FullMethodName             = "/proto.user.v1.UserService/CreateUser"
+	UserService_GetUser_FullMethodName                = "/proto.user.v1.UserService/GetUser"
+	UserService_GetUserByProviderId_FullMethodName    = "/proto.user.v1.UserService/GetUserByProviderId"
+	UserService_UpdateUser_FullMethodName             = "/proto.user.v1.UserService/UpdateUser"
+	UserService_UpdateUserByProviderId_FullMethodName = "/proto.user.v1.UserService/UpdateUserByProviderId"
+	UserService_DeleteUser_FullMethodName             = "/proto.user.v1.UserService/DeleteUser"
+	UserService_DeleteUserByProviderId_FullMethodName = "/proto.user.v1.UserService/DeleteUserByProviderId"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -312,7 +312,7 @@ func _UserService_DeleteUserByProviderId_Handler(srv interface{}, ctx context.Co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.user.UserService",
+	ServiceName: "proto.user.v1.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package proto.v1.user;
+package proto.user.v1;
 
 option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/user";
 
