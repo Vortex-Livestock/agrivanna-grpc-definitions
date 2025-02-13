@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FarmService_CreateFarm_FullMethodName       = "/v1.FarmService/CreateFarm"
-	FarmService_GetFarm_FullMethodName          = "/v1.FarmService/GetFarm"
-	FarmService_GetFarmByOwnerId_FullMethodName = "/v1.FarmService/GetFarmByOwnerId"
-	FarmService_UpdateFarm_FullMethodName       = "/v1.FarmService/UpdateFarm"
-	FarmService_DeleteFarm_FullMethodName       = "/v1.FarmService/DeleteFarm"
+	FarmService_CreateFarm_FullMethodName       = "/proto.farm.v1.FarmService/CreateFarm"
+	FarmService_GetFarm_FullMethodName          = "/proto.farm.v1.FarmService/GetFarm"
+	FarmService_GetFarmByOwnerId_FullMethodName = "/proto.farm.v1.FarmService/GetFarmByOwnerId"
+	FarmService_UpdateFarm_FullMethodName       = "/proto.farm.v1.FarmService/UpdateFarm"
+	FarmService_DeleteFarm_FullMethodName       = "/proto.farm.v1.FarmService/DeleteFarm"
 )
 
 // FarmServiceClient is the client API for FarmService service.
@@ -244,7 +244,7 @@ func _FarmService_DeleteFarm_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FarmService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.FarmService",
+	ServiceName: "proto.farm.v1.FarmService",
 	HandlerType: (*FarmServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

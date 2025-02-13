@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WeightRecordService_CreateWeightRecord_FullMethodName = "/v1.WeightRecordService/CreateWeightRecord"
-	WeightRecordService_GetWeightRecord_FullMethodName    = "/v1.WeightRecordService/GetWeightRecord"
-	WeightRecordService_UpdateWeightRecord_FullMethodName = "/v1.WeightRecordService/UpdateWeightRecord"
-	WeightRecordService_DeleteWeightRecord_FullMethodName = "/v1.WeightRecordService/DeleteWeightRecord"
+	WeightRecordService_CreateWeightRecord_FullMethodName = "/proto.livestock.v1.WeightRecordService/CreateWeightRecord"
+	WeightRecordService_GetWeightRecord_FullMethodName    = "/proto.livestock.v1.WeightRecordService/GetWeightRecord"
+	WeightRecordService_UpdateWeightRecord_FullMethodName = "/proto.livestock.v1.WeightRecordService/UpdateWeightRecord"
+	WeightRecordService_DeleteWeightRecord_FullMethodName = "/proto.livestock.v1.WeightRecordService/DeleteWeightRecord"
 )
 
 // WeightRecordServiceClient is the client API for WeightRecordService service.
@@ -210,7 +210,7 @@ func _WeightRecordService_DeleteWeightRecord_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WeightRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.WeightRecordService",
+	ServiceName: "proto.livestock.v1.WeightRecordService",
 	HandlerType: (*WeightRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

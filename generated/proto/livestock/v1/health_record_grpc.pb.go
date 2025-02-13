@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	HealthRecordService_CreateHealthRecord_FullMethodName = "/v1.HealthRecordService/CreateHealthRecord"
-	HealthRecordService_GetHealthRecord_FullMethodName    = "/v1.HealthRecordService/GetHealthRecord"
-	HealthRecordService_UpdateHealthRecord_FullMethodName = "/v1.HealthRecordService/UpdateHealthRecord"
-	HealthRecordService_DeleteHealthRecord_FullMethodName = "/v1.HealthRecordService/DeleteHealthRecord"
+	HealthRecordService_CreateHealthRecord_FullMethodName = "/proto.livestock.v1.HealthRecordService/CreateHealthRecord"
+	HealthRecordService_GetHealthRecord_FullMethodName    = "/proto.livestock.v1.HealthRecordService/GetHealthRecord"
+	HealthRecordService_UpdateHealthRecord_FullMethodName = "/proto.livestock.v1.HealthRecordService/UpdateHealthRecord"
+	HealthRecordService_DeleteHealthRecord_FullMethodName = "/proto.livestock.v1.HealthRecordService/DeleteHealthRecord"
 )
 
 // HealthRecordServiceClient is the client API for HealthRecordService service.
@@ -210,7 +210,7 @@ func _HealthRecordService_DeleteHealthRecord_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var HealthRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.HealthRecordService",
+	ServiceName: "proto.livestock.v1.HealthRecordService",
 	HandlerType: (*HealthRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

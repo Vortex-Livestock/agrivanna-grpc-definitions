@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package v1;
+package proto.livestock.v1;
 
 option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated";
 
