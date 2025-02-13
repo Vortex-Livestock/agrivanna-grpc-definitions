@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/livestock/v1/breeding_record.proto
 
-package livestock
+package generated
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BreedingRecordService_CreateBreedingRecord_FullMethodName = "/proto.livestock.v1.BreedingRecordService/CreateBreedingRecord"
-	BreedingRecordService_GetBreedingRecord_FullMethodName    = "/proto.livestock.v1.BreedingRecordService/GetBreedingRecord"
-	BreedingRecordService_UpdateBreedingRecord_FullMethodName = "/proto.livestock.v1.BreedingRecordService/UpdateBreedingRecord"
-	BreedingRecordService_DeleteBreedingRecord_FullMethodName = "/proto.livestock.v1.BreedingRecordService/DeleteBreedingRecord"
+	BreedingRecordService_CreateBreedingRecord_FullMethodName = "/v1.BreedingRecordService/CreateBreedingRecord"
+	BreedingRecordService_GetBreedingRecord_FullMethodName    = "/v1.BreedingRecordService/GetBreedingRecord"
+	BreedingRecordService_UpdateBreedingRecord_FullMethodName = "/v1.BreedingRecordService/UpdateBreedingRecord"
+	BreedingRecordService_DeleteBreedingRecord_FullMethodName = "/v1.BreedingRecordService/DeleteBreedingRecord"
 )
 
 // BreedingRecordServiceClient is the client API for BreedingRecordService service.
@@ -210,7 +210,7 @@ func _BreedingRecordService_DeleteBreedingRecord_Handler(srv interface{}, ctx co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var BreedingRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.livestock.v1.BreedingRecordService",
+	ServiceName: "v1.BreedingRecordService",
 	HandlerType: (*BreedingRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

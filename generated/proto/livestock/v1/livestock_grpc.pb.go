@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/livestock/v1/livestock.proto
 
-package livestock
+package generated
 
 import (
 	context "context"
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LivestockService_CreateLivestock_FullMethodName      = "/proto.livestock.v1.LivestockService/CreateLivestock"
-	LivestockService_GetLivestock_FullMethodName         = "/proto.livestock.v1.LivestockService/GetLivestock"
-	LivestockService_GetLivestockByFarmId_FullMethodName = "/proto.livestock.v1.LivestockService/GetLivestockByFarmId"
-	LivestockService_UpdateLivestock_FullMethodName      = "/proto.livestock.v1.LivestockService/UpdateLivestock"
-	LivestockService_DeleteLivestock_FullMethodName      = "/proto.livestock.v1.LivestockService/DeleteLivestock"
+	LivestockService_CreateLivestock_FullMethodName      = "/v1.LivestockService/CreateLivestock"
+	LivestockService_GetLivestock_FullMethodName         = "/v1.LivestockService/GetLivestock"
+	LivestockService_GetLivestockByFarmId_FullMethodName = "/v1.LivestockService/GetLivestockByFarmId"
+	LivestockService_UpdateLivestock_FullMethodName      = "/v1.LivestockService/UpdateLivestock"
+	LivestockService_DeleteLivestock_FullMethodName      = "/v1.LivestockService/DeleteLivestock"
 )
 
 // LivestockServiceClient is the client API for LivestockService service.
@@ -244,7 +244,7 @@ func _LivestockService_DeleteLivestock_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LivestockService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.livestock.v1.LivestockService",
+	ServiceName: "v1.LivestockService",
 	HandlerType: (*LivestockServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

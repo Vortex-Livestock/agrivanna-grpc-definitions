@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/livestock/v1/vaccination_record.proto
 
-package livestock
+package generated
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VaccinationRecordService_CreateVaccinationRecord_FullMethodName = "/proto.livestock.v1.VaccinationRecordService/CreateVaccinationRecord"
-	VaccinationRecordService_GetVaccinationRecord_FullMethodName    = "/proto.livestock.v1.VaccinationRecordService/GetVaccinationRecord"
-	VaccinationRecordService_UpdateVaccinationRecord_FullMethodName = "/proto.livestock.v1.VaccinationRecordService/UpdateVaccinationRecord"
-	VaccinationRecordService_DeleteVaccinationRecord_FullMethodName = "/proto.livestock.v1.VaccinationRecordService/DeleteVaccinationRecord"
+	VaccinationRecordService_CreateVaccinationRecord_FullMethodName = "/v1.VaccinationRecordService/CreateVaccinationRecord"
+	VaccinationRecordService_GetVaccinationRecord_FullMethodName    = "/v1.VaccinationRecordService/GetVaccinationRecord"
+	VaccinationRecordService_UpdateVaccinationRecord_FullMethodName = "/v1.VaccinationRecordService/UpdateVaccinationRecord"
+	VaccinationRecordService_DeleteVaccinationRecord_FullMethodName = "/v1.VaccinationRecordService/DeleteVaccinationRecord"
 )
 
 // VaccinationRecordServiceClient is the client API for VaccinationRecordService service.
@@ -211,7 +211,7 @@ func _VaccinationRecordService_DeleteVaccinationRecord_Handler(srv interface{}, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var VaccinationRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.livestock.v1.VaccinationRecordService",
+	ServiceName: "v1.VaccinationRecordService",
 	HandlerType: (*VaccinationRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -24,8 +24,8 @@ proto:
 		echo "Generating stubs for $$svc..."; \
 		protoc \
 			-I . \
-			--go_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
-			--go-grpc_out=paths=source_relative:$(GENERATED_DIR)/$$svc \
+			--go_out=paths=source_relative:$(GENERATED_DIR)/ \
+			--go-grpc_out=paths=source_relative:$(GENERATED_DIR)/ \
 			$(PROTO_BASE_DIR)/$$svc/v1/*.proto; \
 	done
 	@echo "Protobuf generation completed."
@@ -37,6 +37,6 @@ proto:
 clean:
 	@echo "Cleaning up generated stubs..."
 	@for svc in $(MICROSERVICES); do \
-		rm -rf $(GENERATED_DIR)/$$svc/*; \
+		rm -rf $(GENERATED_DIR)/**/*; \
 	done
 	@echo "Clean up completed."

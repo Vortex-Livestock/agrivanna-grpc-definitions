@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/livestock/v1/temperature_record.proto
 
-package livestock
+package generated
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TemperatureRecordService_CreateTemperatureRecord_FullMethodName = "/proto.livestock.v1.TemperatureRecordService/CreateTemperatureRecord"
-	TemperatureRecordService_GetTemperatureRecord_FullMethodName    = "/proto.livestock.v1.TemperatureRecordService/GetTemperatureRecord"
-	TemperatureRecordService_UpdateTemperatureRecord_FullMethodName = "/proto.livestock.v1.TemperatureRecordService/UpdateTemperatureRecord"
-	TemperatureRecordService_DeleteTemperatureRecord_FullMethodName = "/proto.livestock.v1.TemperatureRecordService/DeleteTemperatureRecord"
+	TemperatureRecordService_CreateTemperatureRecord_FullMethodName = "/v1.TemperatureRecordService/CreateTemperatureRecord"
+	TemperatureRecordService_GetTemperatureRecord_FullMethodName    = "/v1.TemperatureRecordService/GetTemperatureRecord"
+	TemperatureRecordService_UpdateTemperatureRecord_FullMethodName = "/v1.TemperatureRecordService/UpdateTemperatureRecord"
+	TemperatureRecordService_DeleteTemperatureRecord_FullMethodName = "/v1.TemperatureRecordService/DeleteTemperatureRecord"
 )
 
 // TemperatureRecordServiceClient is the client API for TemperatureRecordService service.
@@ -211,7 +211,7 @@ func _TemperatureRecordService_DeleteTemperatureRecord_Handler(srv interface{}, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TemperatureRecordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.livestock.v1.TemperatureRecordService",
+	ServiceName: "v1.TemperatureRecordService",
 	HandlerType: (*TemperatureRecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
