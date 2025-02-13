@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.livestock.v1;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated";
 
 service TemperatureRecordService {
   rpc CreateTemperatureRecord(CreateTemperatureRecordRequest) returns (CreateTemperatureRecordResponse);

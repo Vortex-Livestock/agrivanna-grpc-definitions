@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/livestock/v1/breeding_record.proto
 
-package livestock
+package generated
 
 import (
 	context "context"

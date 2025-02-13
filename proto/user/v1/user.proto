@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.user.v1;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/user";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);

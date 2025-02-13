@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto.farm.v1;
 
-option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/farm";
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated";
 
 service FarmService {
   rpc CreateFarm (CreateFarmRequest) returns (CreateFarmResponse);
