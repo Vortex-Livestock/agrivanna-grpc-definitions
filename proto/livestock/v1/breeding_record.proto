@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package proto.livestock.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
+
+service BreedingRecordService {
+  rpc CreateBreedingRecord(CreateBreedingRecordRequest) returns (CreateBreedingRecordResponse);
+  rpc GetBreedingRecord(GetBreedingRecordRequest) returns (GetBreedingRecordResponse);
+  rpc UpdateBreedingRecord(UpdateBreedingRecordRequest) returns (UpdateBreedingRecordResponse);
+  rpc DeleteBreedingRecord(DeleteBreedingRecordRequest) returns (DeleteBreedingRecordResponse);
+}
+
+message BreedingRecord {
+  string id = 1;
+  string livestock_id = 2;
+  string breeding_date = 3;
+  string sire_id = 4;
+  string dam_id = 5; 
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message CreateBreedingRecordRequest {
+  string livestock_id = 1;
+  string breeding_date = 2;
+  string sire_id = 3;
+  string dam_id = 4; 
+  string notes = 5;
+}
+
+message CreateBreedingRecordResponse {
+  BreedingRecord breeding_record = 1;
+}
+
+message GetBreedingRecordRequest {
+  string id = 1;
+}
+
+message GetBreedingRecordResponse {
+  BreedingRecord breeding_record = 1;
+}
+
+message UpdateBreedingRecordRequest {
+  string id = 1;
+  string livestock_id = 2;
+  string breeding_date = 3;
+  string sire_id = 4;
+  string dam_id = 5; 
+  string notes = 6;
+}
+
+message UpdateBreedingRecordResponse {
+  BreedingRecord breeding_record = 1;
+}
+
+message DeleteBreedingRecordRequest {
+  string id = 1;
+}
+
+message DeleteBreedingRecordResponse {
+
+}

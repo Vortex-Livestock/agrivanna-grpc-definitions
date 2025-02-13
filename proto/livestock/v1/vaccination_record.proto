@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package proto.livestock.v1;
+
+option go_package = "github.com/agrivanna/agrivanna-grpc-definitions/generated/livestock";
+
+service VaccinationRecordService {
+  rpc CreateVaccinationRecord(CreateVaccinationRecordRequest) returns (CreateVaccinationRecordResponse);
+  rpc GetVaccinationRecord(GetVaccinationRecordRequest) returns (GetVaccinationRecordResponse);
+  rpc UpdateVaccinationRecord(UpdateVaccinationRecordRequest) returns (UpdateVaccinationRecordResponse);
+  rpc DeleteVaccinationRecord(DeleteVaccinationRecordRequest) returns (DeleteVaccinationRecordResponse);
+}
+
+message VaccinationRecord {
+  string id = 1;
+  string livestock_id = 2;
+  string date_administered = 3;
+  string vaccine_name = 4;
+  string veterinarian = 5;
+  string notes = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message CreateVaccinationRecordRequest {
+  string livestock_id = 1;
+  string date_administered = 2;
+  string vaccine_name = 3;
+  string veterinarian = 4;
+  string notes = 5;
+}
+
+message CreateVaccinationRecordResponse {
+  VaccinationRecord vaccination_record = 1;
+}
+
+message GetVaccinationRecordRequest {
+  string id = 1;
+}
+
+message GetVaccinationRecordResponse {
+  VaccinationRecord vaccination_record = 1;
+}
+
+message UpdateVaccinationRecordRequest {
+  string id = 1;
+  string livestock_id = 2;
+  string date_administered = 3;
+  string vaccine_name = 4;
+  string veterinarian = 5;
+  string notes = 6;
+}
+
+message UpdateVaccinationRecordResponse {
+  VaccinationRecord vaccination_record = 1;
+}
+
+message DeleteVaccinationRecordRequest {
+  string id = 1;
+}
+
+message DeleteVaccinationRecordResponse {
+
+}
