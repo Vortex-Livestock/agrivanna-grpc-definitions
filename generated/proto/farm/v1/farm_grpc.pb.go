@@ -4,7 +4,7 @@
 // - protoc             v5.29.2
 // source: proto/farm/v1/farm.proto
 
-package farm
+package generated
 
 import (
 	context "context"
