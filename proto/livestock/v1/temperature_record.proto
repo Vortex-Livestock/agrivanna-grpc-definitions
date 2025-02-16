@@ -11,18 +11,12 @@ service TemperatureRecordService {
   rpc DeleteTemperatureRecord(DeleteTemperatureRecordRequest) returns (DeleteTemperatureRecordResponse);
 }
 
-enum TemperatureRecordUnit {
-  TEMPERATURE_RECORD_UNIT_UNSPECIFIED = 0;
-  TEMPERATURE_RECORD_UNIT_CELSIUS = 1;
-  TEMPERATURE_RECORD_UNIT_FAHRENHEIT = 2;
-}
-
 message TemperatureRecord {
   string id = 1;
   string livestock_id = 2;
   string recorded_at = 3;
   float temperature = 4;
-  TemperatureRecordUnit unit = 5; 
+  string unit = 5; 
   string notes = 6;
   string created_at = 7;
   string updated_at = 8;
@@ -32,7 +26,7 @@ message CreateTemperatureRecordRequest {
   string livestock_id = 1;
   string recorded_at = 2;
   float temperature = 3;
-  TemperatureRecordUnit unit = 4; 
+  string unit = 4; 
   string notes = 5;
 }
 
@@ -53,7 +47,7 @@ message UpdateTemperatureRecordRequest {
   string livestock_id = 2;
   string recorded_at = 3;
   float temperature = 4;
-  TemperatureRecordUnit unit = 5; 
+  string unit = 5; 
   string notes = 6;
 }
 
