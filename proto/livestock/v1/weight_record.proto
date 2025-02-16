@@ -11,19 +11,12 @@ service WeightRecordService {
   rpc DeleteWeightRecord(DeleteWeightRecordRequest) returns (DeleteWeightRecordResponse);
 }
 
-enum WeightRecordUnit {
-  WEIGHT_RECORD_UNIT_UNSPECIFIED = 0;
-  WEIGHT_RECORD_UNIT_GRAMS = 1;
-  WEIGHT_RECORD_UNIT_KG = 2;
-  WEIGHT_RECORD_UNIT_LB = 3;
-}
-
 message WeightRecord {
   string id = 1;
   string livestock_id = 2;
   string recorded_at = 3;
   float weight = 4;
-  WeightRecordUnit unit = 5; 
+  string unit = 5; 
   string notes = 6;
   string created_at = 7;
   string updated_at = 8;
@@ -33,7 +26,7 @@ message CreateWeightRecordRequest {
   string livestock_id = 1;
   string recorded_at = 2;
   float weight = 3;
-  WeightRecordUnit unit = 4; 
+  string unit = 4; 
   string notes = 5;
 }
 
@@ -54,7 +47,7 @@ message UpdateWeightRecordRequest {
   string livestock_id = 2;
   string recorded_at = 3;
   float weight = 4;
-  WeightRecordUnit unit = 5; 
+  string unit = 5; 
   string notes = 6;
 }
 
