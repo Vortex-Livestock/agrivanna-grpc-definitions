@@ -18,36 +18,15 @@ service LivestockService {
   rpc DeleteLivestock (DeleteLivestockRequest) returns (DeleteLivestockResponse);
 }
 
-enum LivestockType {
-  LIVESTOCK_TYPE_UNSPECIFIED = 0;
-  LIVESTOCK_TYPE_COW = 1;
-  LIVESTOCK_TYPE_BULL = 2;
-  LIVESTOCK_TYPE_CALF = 3;
-}
-
-enum LivestockSex {
-  LIVESTOCK_SEX_UNSPECIFIED = 0;
-  LIVESTOCK_SEX_MALE = 1;
-  LIVESTOCK_SEX_FEMALE = 2;
-}
-
-enum LivestockStatus {
-  LIVESTOCK_STATUS_UNSPECIFIED = 0;
-  LIVESTOCK_STATUS_ACTIVE = 1;
-  LIVESTOCK_STATUS_SOLD = 2;
-  LIVESTOCK_STATUS_DECEASED = 3;
-  LIVESTOCK_STATUS_RETIRED = 4;
-}
-
 message Livestock {
   string id = 1;
   string farm_id = 2;
-  LivestockType type = 3;
+  string type = 3;
   string breed = 4;
   string birth_date = 5;
   string location = 6;
-  LivestockSex sex = 7;
-  LivestockStatus status = 8;
+  string sex = 7;
+  string status = 8;
   string tag_id = 9;    
   string sire_id = 10; 
   string dam_id = 11;  
@@ -62,12 +41,12 @@ message Livestock {
 
 message CreateLivestockRequest {
   string farm_id = 1;
-  LivestockType type = 2;
+  string type = 2;
   string breed = 3;
   string birth_date = 4;
   string location = 5;
-  LivestockSex sex = 6;
-  LivestockStatus status = 7;
+  string sex = 6;
+  string status = 7;
   string tag_id = 8;    
   string sire_id = 9; 
   string dam_id = 10;  
@@ -96,12 +75,12 @@ message GetLivestockByFarmIdResponse {
 message UpdateLivestockRequest {
   string id = 1;
   string farm_id = 2;
-  LivestockType type = 3;
+  string type = 3;
   string breed = 4;
   string birth_date = 5;
   string location = 6;
-  LivestockSex sex = 7;
-  LivestockStatus status = 8;
+  string sex = 7;
+  string status = 8;
   string tag_id = 9;    
   string sire_id = 10; 
   string dam_id = 11;  
