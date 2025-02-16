@@ -23,15 +23,14 @@ message BreedingRecord {
 }
 
 message CreateBreedingRecordRequest {
-  string livestock_id = 1;
-  string breeding_date = 2;
-  string sire_id = 3;
-  string dam_id = 4; 
-  string notes = 5;
+  string breeding_date = 1;
+  string sire_id = 2;
+  string dam_id = 3; 
+  string notes = 4;
 }
 
 message CreateBreedingRecordResponse {
-  BreedingRecord breeding_record = 1;
+  repeated BreedingRecord breeding_records = 1;
 }
 
 message GetBreedingRecordRequest {
